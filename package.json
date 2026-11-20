@@ -1,0 +1,13 @@
+{
+  "name": "donghaeng-club",
+  "version": "1.0.0",
+  "description": "동행클럽 (Donghaeng Club) - 취향과 대화 중심의 프리미엄 커뮤니티 & 프로그램 서비스",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["community", "club", "branding", "railway"],
+  "author": "todaymusicilsan-ux",
+  "license": "MIT"
+}

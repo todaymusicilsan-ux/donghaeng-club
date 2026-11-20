@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동행클럽 | DONGHAENG CLUB - 취향과 대화의 프리미엄 커뮤니티</title>
+  <meta name="description" content="읽고, 쓰고, 나누며 삶의 반경을 넓히는 곳. 트레바리 스타일의 고품격 독서·커리어·취향 모임 서비스">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#D9532F', // Terracotta warm signature
+              dark: '#B83E1E',
+              light: '#FDF4F0',
+              beige: '#FBFBF8',
+              card: '#FFFFFF',
+              charcoal: '#1A1A1A',
+              muted: '#71717A'
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+            serif: ['Noto Serif KR', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts (Pretendard & Noto Serif KR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #FBFBF8;
+      color: #1A1A1A;
+    }
+    .serif-title {
+      font-family: 'Noto Serif KR', serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FBFBF8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4D4D8;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #A1A1AA;
+    }
+    /* Subtle Grain Texture */
+    .bg-grain {
+      background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+<body class="bg-brand-beige text-brand-charcoal antialiased flex flex-col min-h-screen bg-grain selection:bg-brand selection:text-white">
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="bg-brand text-white text-xs sm:text-sm py-2.5 px-4 text-center font-medium tracking-tight flex items-center justify-center space-x-2">
+    <span class="bg-white/20 px-2 py-0.5 rounded-full text-[11px] font-semibold">2026 시즌</span>
+    <span>3기 정규 멤버 모집 중 · 조기 마감 전 <strong>얼리버드 3만원 할인</strong> 적용 중</span>
+    <a href="#clubs" class="underline underline-offset-2 ml-2 hover:opacity-80 transition">클럽 보기 &rarr;</a>
+  </div>
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <nav class="sticky top-0 z-40 bg-[#FBFBF8]/90 backdrop-blur-md border-b border-stone-200/80 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-xl bg-brand flex items-center justify-center text-white font-serif font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+          同
+        </div>
+        <div>
+          <span class="serif-title text-xl font-bold tracking-tight text-stone-900 block leading-none">동행클럽</span>
+          <span class="text-[10px] tracking-widest uppercase text-stone-600 font-medium block mt-1">DONGHAENG CLUB</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-700">
+        <a href="#clubs" class="hover:text-brand transition">클럽 탐색</a>
+        <a href="#philosophy" class="hover:text-brand transition">동행 철학</a>
+        <a href="#features" class="hover:text-brand transition">모임 방식</a>
+        <a href="#reviews" class="hover:text-brand transition">멤버 후기</a>
+        <a href="#faq" class="hover:text-brand transition">자주 묻는 질문</a>
+      </div>
+
+      <!-- Action Button -->
+      <div class="flex items-center space-x-3">
+        <a href="#clubs" class="hidden sm:inline-flex items-center space-x-1.5 text-xs font-semibold px-4 py-2.5 rounded-full border border-stone-300 text-stone-700 hover:border-stone-900 transition">
+          <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+          <span>프로그램 둘러보기</span>
+        </a>
+        <button onclick="openApplyModal()" class="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full bg-brand text-white hover:bg-brand-dark shadow-sm hover:shadow transition transform active:scale-95">
+          <span>멤버십 신청하기</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative pt-16 pb-20 sm:pt-24 sm:pb-28 overflow-hidden border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      
+      <!-- Hero Top Pill -->
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-stone-700 text-xs font-medium mb-8">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>지금 가장 활발한 취향·대화 커뮤니티</span>
+        <span class="text-stone-300">|</span>
+        <span class="text-brand font-semibold">격주 주말 살롱</span>
+      </div>
+
+      <!-- Main Headline -->
+      <div class="max-w-3xl">
+        <h1 class="serif-title text-3xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 leading-[1.2] tracking-tight mb-6">
+          읽고, 쓰고, 나누며<br>
+          <span class="text-brand underline decoration-brand/30 decoration-4 underline-offset-8">삶의 반경</span>을 넓히는 곳.
+        </h1>
+        <p class="text-base sm:text-xl text-stone-600 leading-relaxed font-light mb-10 max-w-2xl">
+          혼자 읽기 아까운 책 한 권, 일터 너머의 진솔한 커리어 고민, 계절을 담은 와인 한 잔까지.
+          생각과 취향이 통하는 다정한 사람들과 4개월간 깊은 대화를 나눕니다.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+          <a href="#clubs" class="inline-flex items-center justify-center space-x-2 px-8 py-4 rounded-xl bg-stone-900 text-white font-semibold text-sm sm:text-base hover:bg-stone-800 shadow-lg shadow-stone-900/10 hover:shadow-xl transition transform active:scale-98">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span>3기 모집 클럽 탐색하기</span>
+          </a>
+          <a href="#philosophy" class="inline-flex items-center justify-center space-x-2 px-6 py-4 rounded-xl bg-white border border-stone-300 text-stone-700 font-semibold text-sm sm:text-base hover:bg-stone-50 transition">
+            <i data-lucide="book-open" class="w-4 h-4 text-brand"></i>
+            <span>동행클럽 브랜드 이야기</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Metrics Bar -->
+      <div class="mt-16 pt-12 border-t border-stone-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+        <div>
+          <div class="text-2xl sm:text-3xl font-bold font-serif text-stone-900">1,480+</div>
+          <div class="text-xs sm:text-sm text-stone-600 mt-1">누적 참여 멤버</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-bold font-serif text-brand">89.4%</div>
+          <div class="text-xs sm:text-sm text-stone-600 mt-1">다음 시즌 재참여율</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-bold font-serif text-stone-900">48개</div>
+          <div class="text-xs sm:text-sm text-stone-600 mt-1">누적 운영 클럽</div>
+        </div>
+        <div>
+          <div class="text-2xl sm:text-3xl font-bold font-serif text-stone-900">4.9 / 5.0</div>
+          <div class="text-xs sm:text-sm text-stone-600 mt-1">멤버 모임 만족도</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PHILOSOPHY SECTION ==================== -->
+  <section id="philosophy" class="py-20 sm:py-28 bg-white border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand block mb-2">Our Philosophy</span>
+        <h2 class="serif-title text-2xl sm:text-4xl font-bold text-stone-900 leading-tight">
+          동행클럽이 지키는 세 가지 약속
+        </h2>
+        <p class="text-stone-500 text-sm sm:text-base mt-3">
+          단순한 친목 모임을 넘어, 서로의 시선이 확장되는 안전하고 밀도 높은 대화의 장을 만듭니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="p-8 rounded-2xl bg-brand-beige border border-stone-200 hover:border-brand/40 transition-all hover:shadow-md flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-white border border-stone-200 text-brand flex items-center justify-center font-serif text-xl font-bold mb-6">
+              01
+            </div>
+            <h3 class="serif-title text-xl font-bold text-stone-900 mb-3">독후감 없는 모임은 없습니다</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              모임 전날까지 400자 이상의 생각(독후감/발제문)을 제출해야만 참석할 수 있습니다. 준비된 생각들이 모일 때, 대화의 해상도는 완전히 달라집니다.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-200/60 text-xs font-semibold text-brand flex items-center space-x-1">
+            <span>생각을 글로 정돈하는 훈련</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-8 rounded-2xl bg-brand-beige border border-stone-200 hover:border-brand/40 transition-all hover:shadow-md flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-white border border-stone-200 text-brand flex items-center justify-center font-serif text-xl font-bold mb-6">
+              02
+            </div>
+            <h3 class="serif-title text-xl font-bold text-stone-900 mb-3">검증된 호스트의 4회차 커리큘럼</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              각 분야에서 치열하게 일하고 사유하는 호스트가 4회차 여정을 이끕니다. 막연한 이야기 대신, 매회 명확한 질문과 인사이트를 도출합니다.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-200/60 text-xs font-semibold text-brand flex items-center space-x-1">
+            <span>전문성과 다정함의 균형</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-8 rounded-2xl bg-brand-beige border border-stone-200 hover:border-brand/40 transition-all hover:shadow-md flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-white border border-stone-200 text-brand flex items-center justify-center font-serif text-xl font-bold mb-6">
+              03
+            </div>
+            <h3 class="serif-title text-xl font-bold text-stone-900 mb-3">판단 없이 듣는 안전한 살롱</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              나이와 직함은 잠시 내려놓고, 닉네임과 서로를 존중하는 언어로 대화합니다. 취약한 고민도 편안히 털어놓을 수 있는 심리적 안전감을 최우선합니다.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-200/60 text-xs font-semibold text-brand flex items-center space-x-1">
+            <span>느슨하지만 깊은 연대감</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== CLUB DIRECTORY (CORE SECTION) ==================== -->
+  <section id="clubs" class="py-20 sm:py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-brand block mb-2">3rd Season Programs</span>
+        <h2 class="serif-title text-2xl sm:text-4xl font-bold text-stone-900 leading-tight">
+          지금 신청 가능한 동행 클럽
+        </h2>
+        <p class="text-stone-500 text-sm sm:text-base mt-2">
+          격주 토요일/일요일, 감도 높은 공간에서 열리는 4회차 정기 살롱
+        </p>
+      </div>
+
+      <!-- Search Input -->
+      <div class="mt-6 md:mt-0 relative w-full md:w-72">
+        <i data-lucide="search" class="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+        <input 
+          type="text" 
+          id="clubSearchInput" 
+          placeholder="클럽명, 호스트, 주제 검색" 
+          oninput="filterClubs()"
+          class="w-full pl-10 pr-4 py-2.5 rounded-full border border-stone-300 bg-white text-xs sm:text-sm focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition"
+        >
+      </div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex items-center space-x-2 overflow-x-auto pb-4 mb-8 text-xs sm:text-sm font-medium scrollbar-none" id="categoryFilterContainer">
+      <button onclick="setCategory('all')" class="category-btn active px-4 py-2 rounded-full border border-stone-900 bg-stone-900 text-white transition whitespace-nowrap" data-cat="all">
+        전체 보기
+      </button>
+      <button onclick="setCategory('humanities')" class="category-btn px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 hover:border-stone-900 transition whitespace-nowrap" data-cat="humanities">
+        인문·철학
+      </button>
+      <button onclick="setCategory('career')" class="category-btn px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 hover:border-stone-900 transition whitespace-nowrap" data-cat="career">
+        커리어·비즈니스
+      </button>
+      <button onclick="setCategory('lifestyle')" class="category-btn px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 hover:border-stone-900 transition whitespace-nowrap" data-cat="lifestyle">
+        와인·미식·취향
+      </button>
+      <button onclick="setCategory('writing')" class="category-btn px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 hover:border-stone-900 transition whitespace-nowrap" data-cat="writing">
+        창작·글쓰기
+      </button>
+    </div>
+
+    <!-- Club Cards Grid -->
+    <div id="clubCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyClubs" class="hidden text-center py-20 bg-white rounded-2xl border border-stone-200">
+      <i data-lucide="help-circle" class="w-10 h-10 text-stone-300 mx-auto mb-3"></i>
+      <h3 class="font-serif text-lg font-bold text-stone-700">해당 조건에 맞는 클럽이 없습니다.</h3>
+      <p class="text-stone-400 text-xs mt-1">검색어를 바꾸거나 필터를 전체로 설정해 보세요.</p>
+      <button onclick="setCategory('all'); document.getElementById('clubSearchInput').value='';" class="mt-4 px-4 py-2 text-xs font-semibold rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 transition">
+        필터 초기화
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ==================== MEMBER PERKS / HOW IT WORKS ==================== -->
+  <section id="features" class="py-20 sm:py-28 bg-[#F4F4EE] border-y border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand block mb-2">Membership Benefits</span>
+        <h2 class="serif-title text-2xl sm:text-4xl font-bold text-stone-900 leading-tight">
+          동행클럽 멤버가 되면 누리는 특별한 경험
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-orange-50 text-brand flex items-center justify-center mb-4">
+            <i data-lucide="repeat" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-stone-900 text-base mb-2">다른 클럽 1회 '놀러가기'</h4>
+          <p class="text-stone-500 text-xs leading-relaxed">
+            내가 신청한 클럽 외에 관심 있는 다른 클럽에 1회 무료로 게스트 참석할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-4">
+            <i data-lucide="coffee" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-stone-900 text-base mb-2">프라이빗 살롱 아지트 이용</h4>
+          <p class="text-stone-500 text-xs leading-relaxed">
+            안국과 성수에 위치한 동행 전용 라운지를 주중 언제든 책을 읽거나 작업 공간으로 이용하세요.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-stone-900 text-base mb-2">멤버 주최 '번개' 모임</h4>
+          <p class="text-stone-500 text-xs leading-relaxed">
+            전시회 관람, 위스키 테이스팅, 주말 러닝 등 관심사별 자유 번개 모임을 열고 참여할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-4">
+            <i data-lucide="book-marked" class="w-5 h-5"></i>
+          </div>
+          <h4 class="font-bold text-stone-900 text-base mb-2">시즌 아카이브집 증정</h4>
+          <p class="text-stone-500 text-xs leading-relaxed">
+            시즌 동안 멤버들이 작성한 아름다운 독후감과 발제문들을 엮어 실물 양장본 아카이브북으로 선물합니다.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== MEMBER REVIEWS ==================== -->
+  <section id="reviews" class="py-20 sm:py-28 bg-white border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand block mb-2">Member Stories</span>
+        <h2 class="serif-title text-2xl sm:text-4xl font-bold text-stone-900 leading-tight">
+          "매달 삶의 환기구가 생겼습니다"
+        </h2>
+        <p class="text-stone-500 text-sm mt-3">동행클럽을 거쳐간 멤버들이 전하는 진솔한 이야기</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="p-8 rounded-2xl bg-brand-beige border border-stone-200 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-500 mb-4">
+              ★★★★★
+            </div>
+            <p class="text-stone-700 text-sm leading-relaxed mb-6 italic">
+              "직장 생활 7년 차, 매일 반복되는 업무 속에 영혼이 닳는 느낌이었어요. 토요일 낮 안국 살롱에서 나눈 4시간의 대화는 지난 1년 중 가장 밀도 높은 시간이었습니다."
+            </p>
+          </div>
+          <div class="flex items-center space-x-3 pt-4 border-t border-stone-200/60">
+            <div class="w-10 h-10 rounded-full bg-stone-300 font-bold text-xs flex items-center justify-center text-stone-700">김서</div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">김서영 님</div>
+              <div class="text-[11px] text-stone-500">철학 클럽 2기 · IT 프로덕트 디자이너</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-brand-beige border border-stone-200 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-500 mb-4">
+              ★★★★★
+            </div>
+            <p class="text-stone-700 text-sm leading-relaxed mb-6 italic">
+              "독후감을 마감 전까지 못 내면 모임에 못 들어가는 엄격한 규칙 덕분에 책을 끝까지 제대로 읽게 됩니다. 호스트님의 날카로운 발제문 덕분에 새로운 관점을 배웠어요."
+            </p>
+          </div>
+          <div class="flex items-center space-x-3 pt-4 border-t border-stone-200/60">
+            <div class="w-10 h-10 rounded-full bg-stone-300 font-bold text-xs flex items-center justify-center text-stone-700">이준</div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">이준호 님</div>
+              <div class="text-[11px] text-stone-500">커리어 리더십 클럽 1~2기 · 스타트업 팀리드</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-brand-beige border border-stone-200 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-500 mb-4">
+              ★★★★★
+            </div>
+            <p class="text-stone-700 text-sm leading-relaxed mb-6 italic">
+              "와인과 미식 에세이를 함께 읽으며 주말 저녁을 보내는 시간이 너무 낭만적이었습니다. 모임이 끝나도 편안하게 취향을 나눌 수 있는 진짜 친구들이 생겼습니다."
+            </p>
+          </div>
+          <div class="flex items-center space-x-3 pt-4 border-t border-stone-200/60">
+            <div class="w-10 h-10 rounded-full bg-stone-300 font-bold text-xs flex items-center justify-center text-stone-700">박하</div>
+            <div>
+              <div class="text-xs font-bold text-stone-900">박하은 님</div>
+              <div class="text-[11px] text-stone-500">와인&에세이 클럽 2기 · 브랜드 마케터</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ACCORDION ==================== -->
+  <section id="faq" class="py-20 sm:py-28 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand block mb-2">FAQ</span>
+      <h2 class="serif-title text-2xl sm:text-4xl font-bold text-stone-900">
+        자주 묻는 질문
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      
+      <!-- FAQ 1 -->
+      <div class="border border-stone-200 rounded-xl bg-white overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full py-5 px-6 text-left flex items-center justify-between font-semibold text-stone-800 text-sm sm:text-base hover:text-brand transition">
+          <span>독후감을 마감 전까지 제출하지 못하면 어떻게 되나요?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
+          모임의 밀도 있는 대화를 위해 모임 전날 자정(23:59)까지 400자 이상의 독후감을 제출해야만 입장이 가능합니다. 마감 기한을 넘길 경우 해당 회차 모임에 참석하실 수 없으니 꼭 마감을 지켜주세요!
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="border border-stone-200 rounded-xl bg-white overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full py-5 px-6 text-left flex items-center justify-between font-semibold text-stone-800 text-sm sm:text-base hover:text-brand transition">
+          <span>개인 사정으로 모임에 결석하게 되면 어떻게 하나요?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
+          시즌당 1회 '놀러가기' 멤버십 권한을 제공합니다. 결석하게 되더라도 시즌 내에 열리는 다른 클럽 중 잔여석이 있는 모임에 게스트로 참석하실 수 있습니다.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="border border-stone-200 rounded-xl bg-white overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full py-5 px-6 text-left flex items-center justify-between font-semibold text-stone-800 text-sm sm:text-base hover:text-brand transition">
+          <span>처음 참여하는데 낯을 많이 가려도 괜찮을까요?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
+          전혀 걱정하지 마세요! 모임의 70% 이상의 멤버들이 혼자 신청합니다. 모든 클럽은 호스트가 편안하게 말문을 열 수 있도록 아이스브레이킹과 정돈된 발제문 질문을 중심으로 진행하므로 자연스럽게 대화에 녹아들 수 있습니다.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="border border-stone-200 rounded-xl bg-white overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full py-5 px-6 text-left flex items-center justify-between font-semibold text-stone-800 text-sm sm:text-base hover:text-brand transition">
+          <span>환불 규정은 어떻게 되나요?</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 transition-transform"></i>
+        </button>
+        <div class="faq-content hidden px-6 pb-5 text-xs sm:text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
+          시즌 첫 모임 시작 7일 전까지는 100% 전액 환불됩니다. 3일 전까지는 80% 환불되며, 모임 시작 이후에는 잔여 회차에 따라 규정된 위약금을 제외한 금액이 일할 계산되어 환불됩니다.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== BOTTOM CTA BANNER ==================== -->
+  <section class="bg-stone-900 text-white py-20 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+    <div class="max-w-3xl mx-auto relative z-10">
+      <span class="text-xs uppercase tracking-widest text-brand font-bold block mb-3">Join Donghaeng</span>
+      <h2 class="serif-title text-3xl sm:text-5xl font-bold mb-6 leading-tight">
+        올봄, 당신의 주말을 바꿀<br>다정한 대화의 살롱으로 초대합니다.
+      </h2>
+      <p class="text-stone-400 text-sm sm:text-base mb-8 max-w-xl mx-auto font-light">
+        혼자서는 닿지 못했던 생각의 지평, 동행클럽 3기에서 함께 발견해 보세요.
+      </p>
+      <button onclick="openApplyModal()" class="px-8 py-4 rounded-full bg-brand text-white font-semibold text-sm sm:text-base hover:bg-brand-dark transition shadow-lg hover:shadow-brand/20 transform hover:-translate-y-0.5 active:translate-y-0">
+        3기 멤버십 지금 신청하기 &rarr;
+      </button>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-[#141414] text-stone-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-stone-800 text-xs">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-white font-serif font-bold text-base">
+          同
+        </div>
+        <div>
+          <span class="serif-title text-sm font-bold text-white block">동행클럽 (DONGHAENG CLUB)</span>
+          <span class="text-[11px] text-stone-500">취향과 생각이 통하는 사람들의 살롱 커뮤니티</span>
+        </div>
+      </div>
+
+      <div class="flex space-x-6 text-stone-400">
+        <a href="#clubs" class="hover:text-white transition">클럽 리스트</a>
+        <a href="#philosophy" class="hover:text-white transition">브랜드 철학</a>
+        <a href="#reviews" class="hover:text-white transition">멤버 후기</a>
+        <a href="#faq" class="hover:text-white transition">이용약관 및 환불규정</a>
+      </div>
+
+      <div class="text-stone-500 text-center md:text-right">
+        &copy; 2026 Donghaeng Club. All rights reserved.<br>
+        Deployed via GitHub & Railway
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== CLUB DETAIL MODAL ==================== -->
+  <div id="clubDetailModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-stone-200 relative animate-in fade-in zoom-in duration-200">
+      
+      <!-- Close Button -->
+      <button onclick="closeDetailModal()" class="absolute right-5 top-5 w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Content Body -->
+      <div id="detailModalBody" class="p-6 sm:p-8">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== APPLICATION MODAL ==================== -->
+  <div id="applyModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-stone-200 relative overflow-hidden">
+      
+      <div class="p-6 sm:p-8 border-b border-stone-100 flex items-center justify-between">
+        <div>
+          <h3 class="serif-title text-xl font-bold text-stone-900">동행클럽 3기 멤버십 신청</h3>
+          <p class="text-xs text-stone-500 mt-1">간단한 정보 입력 후 1분 만에 접수가 완료됩니다.</p>
+        </div>
+        <button onclick="closeApplyModal()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="applyForm" onsubmit="submitApplication(event)" class="p-6 sm:p-8 space-y-4">
+        
+        <!-- Select Club -->
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1.5">신청할 클럽 선택 *</label>
+          <select id="applyClubSelect" required class="w-full px-4 py-3 rounded-xl border border-stone-300 bg-stone-50 text-xs sm:text-sm focus:outline-none focus:border-brand focus:bg-white transition">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <!-- Name -->
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1.5">이름 (실명) *</label>
+          <input type="text" id="applyName" required placeholder="예: 김동행" class="w-full px-4 py-3 rounded-xl border border-stone-300 bg-stone-50 text-xs sm:text-sm focus:outline-none focus:border-brand focus:bg-white transition">
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1.5">연락처 *</label>
+          <input type="tel" id="applyPhone" required placeholder="010-0000-0000" class="w-full px-4 py-3 rounded-xl border border-stone-300 bg-stone-50 text-xs sm:text-sm focus:outline-none focus:border-brand focus:bg-white transition">
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1.5">이메일 주소 *</label>
+          <input type="email" id="applyEmail" required placeholder="you@example.com" class="w-full px-4 py-3 rounded-xl border border-stone-300 bg-stone-50 text-xs sm:text-sm focus:outline-none focus:border-brand focus:bg-white transition">
+        </div>
+
+        <!-- Motivation -->
+        <div>
+          <label class="block text-xs font-semibold text-stone-700 mb-1.5">참여 동기 및 기대하는 점</label>
+          <textarea id="applyMotivation" rows="3" placeholder="이번 시즌 클럽에서 나누고 싶은 생각이나 기대하는 점을 남겨주세요." class="w-full px-4 py-3 rounded-xl border border-stone-300 bg-stone-50 text-xs sm:text-sm focus:outline-none focus:border-brand focus:bg-white transition"></textarea>
+        </div>
+
+        <!-- Total Price -->
+        <div class="bg-brand-beige p-4 rounded-xl border border-stone-200 flex items-center justify-between text-xs sm:text-sm">
+          <span class="text-stone-600 font-medium">시즌 4회차 정기 참가비</span>
+          <span class="font-bold text-brand font-serif text-base">210,000원 <span class="text-[11px] font-normal text-stone-400 line-through">240,000원</span></span>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-brand text-white font-semibold text-sm hover:bg-brand-dark transition shadow-md hover:shadow-lg">
+          멤버십 신청 완료하기
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-stone-900 text-white text-xs sm:text-sm py-3 px-5 rounded-xl shadow-xl flex items-center space-x-2">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">안내 메시지</span>
+  </div>
+
+  <!-- ==================== CLIENT JAVASCRIPT ==================== -->
+  <script>
+    // Sample Clubs Data (Trevari / Donghaeng style)
+    const CLUBS = [
+      {
+        id: "philosophy-01",
+        category: "humanities",
+        categoryName: "인문·철학",
+        status: "마감 임박 (잔여 2석)",
+        statusColor: "text-rose-600 bg-rose-50 border-rose-200",
+        title: "불확실한 시대, 흔들리지 않는 내면을 세우는 철학 읽기",
+        summary: "세네카부터 니체까지, 고전 철학자들의 문장을 통해 타인의 시선에서 벗어나 온전한 나로 서는 연습.",
+        host: {
+          name: "정선우",
+          role: "철학 에세이스트 · 전 인문교양지 편집위원",
+          avatarBg: "bg-amber-100 text-amber-900",
+          initial: "정"
+        },
+        schedule: "격주 일요일 14:00 - 17:30 (총 4회)",
+        location: "안국 한옥 살롱 '공간 同'",
+        price: "210,000원",
+        regularPrice: "240,000원",
+        curriculum: [
+          { week: "1회차", topic: "스토아학파와 평정심", book: "세네카 《인생론》", desc: "통제할 수 있는 것과 없는 것을 구분하는 마음의 지혜" },
+          { week: "2회차", topic: "고독과 사색의 무게", book: "몽테뉴 《수상록》", desc: "타인의 평가에서 벗어나 나만의 내밀한 방을 가꾸는 법" },
+          { week: "3회차", topic: "니체와 자기 극복", book: "니체 《차라투스트라는 이렇게 말했다》", desc: "고난과 시련을 나만의 춤추는 별로 바꾸는 용기" },
+          { week: "4회차", topic: "자유와 실존의 선언", book: "빅터 프랭클 《죽음의 수용소에서》", desc: "어떤 상황에서도 내가 선택할 수 있는 삶의 태도" }
+        ]
+      },
+      {
+        id: "career-02",
+        category: "career",
+        categoryName: "커리어·비즈니스",
+        status: "모집 중",
+        statusColor: "text-emerald-700 bg-emerald-50 border-emerald-200",
+        title: "10년 차 리더들의 일과 생존의 기술: 성과와 나다움 사이",
+        summary: "번아웃 없이 지속 가능한 일의 균형을 찾는 법. 시니어 프로덕트 리더들과 나누는 솔직한 일터 고민.",
+        host: {
+          name: "강민호",
+          role: "시리즈B 테크 스타트업 CPO · 전 글로벌 컨설턴트",
+          avatarBg: "bg-blue-100 text-blue-900",
+          initial: "강"
+        },
+        schedule: "격주 목요일 19:30 - 22:30 (총 4회)",
+        location: "강남 테헤란로 프라이빗 라운지",
+        price: "210,000원",
+        regularPrice: "240,000원",
+        curriculum: [
+          { week: "1회차", topic: "조직에서 나만의 존재감 세우기", book: "벤 호로위츠 《하드씽》", desc: "위기의 순간 리더는 어떻게 결단하고 동료를 지키는가" },
+          { week: "2회차", topic: "소통과 심리적 안전감", book: "에이미 에드먼슨 《두려움 없는 조직》", desc: "솔직한 피드백이 오가는 원팀을 만드는 대화법" },
+          { week: "3회차", topic: "성과주의 너머의 자기 효능감", book: "올리버 버크먼 《4천 주》", desc: "시간을 통제하려는 강박을 내려놓고 본질에 집중하기" },
+          { week: "4회차", topic: "커리어 다음 10년의 로드맵", book: "자체 발제 케이스 스터디", desc: "멤버별 커리어 포트폴리오 크로스 리뷰 및 네트워킹" }
+        ]
+      },
+      {
+        id: "lifestyle-03",
+        category: "lifestyle",
+        categoryName: "와인·미식·취향",
+        status: "마감 임박 (잔여 1석)",
+        statusColor: "text-rose-600 bg-rose-50 border-rose-200",
+        title: "내추럴 와인 글라스 너머 나누는 감각과 미식 에세이",
+        summary: "정답 없는 미식의 세계. 네 가지 테마의 내추럴 와인을 시음하며 일상의 섬세한 감각을 문장으로 나눕니다.",
+        host: {
+          name: "이서진",
+          role: "소믈리에 & 푸드 컬럼니스트",
+          avatarBg: "bg-purple-100 text-purple-900",
+          initial: "이"
+        },
+        schedule: "격주 토요일 18:00 - 21:30 (총 4회)",
+        location: "성수동 와인 아지트 '글라스 살롱'",
+        price: "260,000원 (와인 페어링 포함)",
+        regularPrice: "290,000원",
+        curriculum: [
+          { week: "1회차", topic: "오렌지 와인과 대지의 맛", book: "줄리앙 카르티에 《내추럴 와인 산책》", desc: "가장 원초적인 발효가 전해주는 날것의 에너지" },
+          { week: "2회차", topic: "기포 속에 담긴 축제의 기억", book: "어니스트 헤밍웨이 《파리는 날마다 축제》", desc: "스파클링 와인과 청춘의 찬란했던 순간들" },
+          { week: "3회차", topic: "토양(떼루아)과 사람의 이야기", book: "마츠우라 야타로 《취향의 기쁨》", desc: "시간이 빚어낸 복합미를 언어로 표현해 보기" },
+          { week: "4회차", topic: "나만의 미식 페어링 디너", book: "멤버별 애정 레시피 나눔", desc: "각자 준비한 한 접시와 함께하는 피날레 살롱" }
+        ]
+      },
+      {
+        id: "writing-04",
+        category: "writing",
+        categoryName: "창작·글쓰기",
+        status: "모집 중",
+        statusColor: "text-emerald-700 bg-emerald-50 border-emerald-200",
+        title: "내 삶의 결을 문장으로 옮기는 4주 산문집 집필반",
+        summary: "서랍 속에 묵혀둔 나만의 이야기를 꺼내어 다정한 독자들에게 건네는 시간. 시즌 종료 후 실물 책 발간.",
+        host: {
+          name: "한지수",
+          role: "소설가 · 브런치북 대상 수상 작가",
+          avatarBg: "bg-stone-200 text-stone-900",
+          initial: "한"
+        },
+        schedule: "격주 토요일 10:30 - 13:30 (총 4회)",
+        location: "서촌 북살롱 '책과 침묵'",
+        price: "210,000원",
+        regularPrice: "240,000원",
+        curriculum: [
+          { week: "1회차", topic: "나의 첫 기억과 마주하기", book: "신형철 《인생의 역사》", desc: "평범한 일상 속에서 문장이 되는 결정적 찰나 포착하기" },
+          { week: "2회차", topic: "구체적인 디테일의 힘", book: "애니 딜러드 《글쓰는 삶》", desc: "형용사 대신 오감으로 공간과 감정을 스케치하기" },
+          { week: "3회차", topic: "취약함을 드러내는 용기", book: "올리버 색스 《고맙습니다》", desc: "상처와 실수를 솔직하게 고백하며 독자와 연결되기" },
+          { week: "4회차", topic: "합평과 최종 원고 완성", book: "멤버 전원 산문 합평집", desc: "동료들의 시선으로 다듬어 실물 미니북 제본" }
+        ]
+      },
+      {
+        id: "humanities-05",
+        category: "humanities",
+        categoryName: "인문·철학",
+        status: "모집 중",
+        statusColor: "text-emerald-700 bg-emerald-50 border-emerald-200",
+        title: "현대 미술관 옆 살롱: 캔버스 뒤 숨겨진 시대의 질문들",
+        summary: "앤디 워홀부터 데이비드 호크니까지, 현대미술의 파격이 우리에게 던지는 '아름다움과 자유'에 관한 물음들.",
+        host: {
+          name: "오유진",
+          role: "독립 큐레이터 & 아트 칼럼니스트",
+          avatarBg: "bg-rose-100 text-rose-900",
+          initial: "오"
+        },
+        schedule: "격주 일요일 11:00 - 14:00 (총 4회)",
+        location: "삼청동 아트 갤러리 살롱",
+        price: "210,000원",
+        regularPrice: "240,000원",
+        curriculum: [
+          { week: "1회차", topic: "전통의 파괴와 개념미술", book: "아서 단토 《예술의 종말 이후》", desc: "왜 뒤샹의 변기가 현대 예술의 시작이 되었는가" },
+          { week: "2회차", topic: "자본주의와 팝아트", book: "장 보드리야르 《소비의 사회》", desc: "소비 사회 속에서 예술은 어떻게 저항하고 동화되었는가" },
+          { week: "3회차", topic: "색채와 내면의 치유", book: "마크 로스코 에세이 선집", desc: "거대한 색면 앞에서 흘리는 눈물의 정체 탐구" },
+          { week: "4회차", topic: "삼청동 프라이빗 갤러리 투어", book: "현장 도슨트 세션", desc: "실제 갤러리 작품을 관람하고 와인과 함께 나누는 비평" }
+        ]
+      },
+      {
+        id: "career-06",
+        category: "career",
+        categoryName: "커리어·비즈니스",
+        status: "모집 중",
+        statusColor: "text-emerald-700 bg-emerald-50 border-emerald-200",
+        title: "사이드 프로젝트로 나만의 브랜드 시작하기",
+        summary: "퇴사하지 않고도 내 아이디어를 시장에 검증하는 린(Lean) 런칭 프레임워크와 브랜드 스토리텔링.",
+        host: {
+          name: "최원석",
+          role: "라이프스타일 브랜드 파운더 · 전 네이버 기획자",
+          avatarBg: "bg-indigo-100 text-indigo-900",
+          initial: "최"
+        },
+        schedule: "격주 수요일 19:30 - 22:30 (총 4회)",
+        location: "을지로 크리에이티브 라운지",
+        price: "210,000원",
+        regularPrice: "240,000원",
+        curriculum: [
+          { week: "1회차", topic: "내 취향을 비즈니스로 번역하기", book: "세스 고딘 《린치핀》", desc: "남을 따라 하지 않고 나의 고유한 차별점 정의하기" },
+          { week: "2회차", topic: "가장 작은 단위로 검증하기", book: "에릭 리스 《린 스타트업》", desc: "돈 들이지 않고 랜딩페이지로 고객 반응 측정하기" },
+          { week: "3회차", topic: "진성 팬 1,000명 모으는 법", book: "케빈 켈리 《1,000명의 진정한 팬》", desc: "진정성 있는 커뮤니케이션과 뉴스레터 브랜딩" },
+          { week: "4회차", topic: "각자 사이드 프로젝트 데모데이", book: "프로젝트 피치덱 리뷰", desc: "멤버 간 협업 기회 모색 및 런칭 피드백" }
+        ]
+      }
+    ];
+
+    let currentCategory = 'all';
+
+    // Render Clubs
+    function renderClubs() {
+      const container = document.getElementById('clubCardsGrid');
+      const emptyState = document.getElementById('emptyClubs');
+      const searchQuery = (document.getElementById('clubSearchInput')?.value || '').toLowerCase().trim();
+
+      const filtered = CLUBS.filter(c => {
+        const matchCat = currentCategory === 'all' || c.category === currentCategory;
+        const matchSearch = !searchQuery || 
+          c.title.toLowerCase().includes(searchQuery) ||
+          c.summary.toLowerCase().includes(searchQuery) ||
+          c.host.name.toLowerCase().includes(searchQuery);
+        return matchCat && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      container.innerHTML = filtered.map(c => `
+        <div class="bg-white rounded-3xl border border-stone-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+          
+          <div class="p-6 sm:p-7">
+            <!-- Header Badges -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-stone-100 text-stone-700">
+                ${c.categoryName}
+              </span>
+              <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full border ${c.statusColor}">
+                ${c.status}
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="serif-title text-xl font-bold text-stone-900 group-hover:text-brand transition mb-3 leading-snug">
+              ${c.title}
+            </h3>
+
+            <!-- Summary -->
+            <p class="text-stone-600 text-xs sm:text-sm line-clamp-2 leading-relaxed mb-6 font-light">
+              ${c.summary}
+            </p>
+
+            <!-- Host Info -->
+            <div class="flex items-center space-x-3 p-3 rounded-2xl bg-stone-50 border border-stone-100 mb-6">
+              <div class="w-10 h-10 rounded-full ${c.host.avatarBg} font-serif font-bold text-sm flex items-center justify-center shadow-xs">
+                ${c.host.initial}
+              </div>
+              <div>
+                <div class="text-xs font-bold text-stone-900">클럽장 ${c.host.name}</div>
+                <div class="text-[11px] text-stone-500 font-light truncate max-w-[200px]">${c.host.role}</div>
+              </div>
+            </div>
+
+            <!-- Details List -->
+            <div class="space-y-2 text-xs text-stone-600">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-stone-400"></i>
+                <span>${c.schedule}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-stone-400"></i>
+                <span>${c.location}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer & CTA -->
+          <div class="px-6 sm:px-7 py-4 bg-brand-beige border-t border-stone-100 flex items-center justify-between">
+            <div>
+              <div class="text-[11px] text-stone-400 line-through">${c.regularPrice}</div>
+              <div class="text-sm font-bold font-serif text-brand">${c.price}</div>
+            </div>
+            <div class="flex space-x-2">
+              <button onclick="openDetailModal('${c.id}')" class="px-3.5 py-2 rounded-xl bg-white border border-stone-300 text-stone-700 hover:border-stone-900 text-xs font-semibold transition">
+                상세 보기
+              </button>
+              <button onclick="openApplyModal('${c.id}')" class="px-4 py-2 rounded-xl bg-brand text-white hover:bg-brand-dark text-xs font-semibold transition shadow-xs">
+                신청하기
+              </button>
+            </div>
+          </div>
+
+        </div>
+      `).join('');
+
+      // Refresh icons
+      lucide.createIcons();
+    }
+
+    // Category selection
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = "category-btn active px-4 py-2 rounded-full border border-stone-900 bg-stone-900 text-white transition whitespace-nowrap";
+        } else {
+          btn.className = "category-btn px-4 py-2 rounded-full border border-stone-300 bg-white text-stone-700 hover:border-stone-900 transition whitespace-nowrap";
+        }
+      });
+      renderClubs();
+    }
+
+    function filterClubs() {
+      renderClubs();
+    }
+
+    // Club Detail Modal
+    function openDetailModal(clubId) {
+      const club = CLUBS.find(c => c.id === clubId);
+      if (!club) return;
+
+      const body = document.getElementById('detailModalBody');
+      body.innerHTML = `
+        <div class="mb-6">
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-stone-100 text-stone-700">${club.categoryName}</span>
+            <span class="text-xs font-semibold px-2.5 py-1 rounded-full border ${club.statusColor}">${club.status}</span>
+          </div>
+          <h2 class="serif-title text-2xl sm:text-3xl font-bold text-stone-900 mb-3">${club.title}</h2>
+          <p class="text-stone-600 text-sm font-light leading-relaxed">${club.summary}</p>
+        </div>
+
+        <!-- Host Spotlight -->
+        <div class="p-5 rounded-2xl bg-brand-beige border border-stone-200 mb-8 flex items-start space-x-4">
+          <div class="w-12 h-12 rounded-full ${club.host.avatarBg} font-serif font-bold text-base flex-shrink-0 flex items-center justify-center">
+            ${club.host.initial}
+          </div>
+          <div>
+            <div class="text-xs font-bold text-stone-900">클럽장 ${club.host.name}</div>
+            <div class="text-xs text-stone-500 mb-2">${club.host.role}</div>
+            <p class="text-xs text-stone-600 leading-relaxed font-light">
+              "혼자 읽고 생각할 때 닿지 못했던 시선들을 동행 멤버들과 함께 나누고 싶습니다. 편안한 마음으로 솔직한 자신의 이야기를 들고 찾아와 주세요."
+            </p>
+          </div>
+        </div>
+
+        <!-- Curriculum -->
+        <div class="mb-8">
+          <h4 class="serif-title text-lg font-bold text-stone-900 mb-4 flex items-center space-x-2">
+            <i data-lucide="book-open" class="w-4 h-4 text-brand"></i>
+            <span>4회차 정규 커리큘럼</span>
+          </h4>
+          <div class="space-y-3">
+            ${club.curriculum.map(curr => `
+              <div class="p-4 rounded-xl border border-stone-200 bg-white">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-brand">${curr.week} · ${curr.topic}</span>
+                  <span class="text-[11px] font-semibold text-stone-500">${curr.book}</span>
+                </div>
+                <p class="text-xs text-stone-600 font-light">${curr.desc}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Schedule & Rules -->
+        <div class="p-4 rounded-xl bg-stone-50 border border-stone-200 text-xs text-stone-600 space-y-2 mb-8">
+          <div><strong>모임 일정:</strong> ${club.schedule}</div>
+          <div><strong>모임 장소:</strong> ${club.location}</div>
+          <div><strong>준비물 및 과제:</strong> 모임 전날 자정(23:59)까지 400자 이상 독후감 제출 필수</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="flex items-center justify-between pt-4 border-t border-stone-200">
+          <div>
+            <span class="text-xs text-stone-400 line-through block">${club.regularPrice}</span>
+            <span class="text-xl font-bold font-serif text-brand">${club.price}</span>
+          </div>
+          <button onclick="closeDetailModal(); openApplyModal('${club.id}')" class="px-6 py-3 rounded-full bg-brand text-white font-semibold text-xs sm:text-sm hover:bg-brand-dark transition shadow-md">
+            이 클럽으로 신청하기 &rarr;
+          </button>
+        </div>
+      `;
+
+      document.getElementById('clubDetailModal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeDetailModal() {
+      document.getElementById('clubDetailModal').classList.add('hidden');
+    }
+
+    // Application Modal
+    function openApplyModal(preselectedClubId) {
+      const select = document.getElementById('applyClubSelect');
+      select.innerHTML = CLUBS.map(c => `
+        <option value="${c.id}" ${c.id === preselectedClubId ? 'selected' : ''}>
+          [${c.categoryName}] ${c.title}
+        </option>
+      `).join('');
+
+      document.getElementById('applyModal').classList.remove('hidden');
+    }
+
+    function closeApplyModal() {
+      document.getElementById('applyModal').classList.add('hidden');
+    }
+
+    // Submit Application
+    async function submitApplication(e) {
+      e.preventDefault();
+      const clubId = document.getElementById('applyClubSelect').value;
+      const club = CLUBS.find(c => c.id === clubId);
+
+      const payload = {
+        clubId: clubId,
+        clubTitle: club ? club.title : '',
+        name: document.getElementById('applyName').value,
+        phone: document.getElementById('applyPhone').value,
+        email: document.getElementById('applyEmail').value,
+        motivation: document.getElementById('applyMotivation').value
+      };
+
+      try {
+        const res = await fetch('/api/apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        console.log('신청 결과:', data);
+      } catch (err) {
+        console.warn('로컬 오프라인 모드 신청 저장');
+      }
+
+      closeApplyModal();
+      showToast(`${payload.name}님, 동행클럽 3기 멤버십 신청이 성공적으로 접수되었습니다!`);
+      document.getElementById('applyForm').reset();
+    }
+
+    // Toast
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 4000);
+    }
+
+    // FAQ Accordion
+    function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      const isHidden = content.classList.contains('hidden');
+
+      // Close all
+      document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('#faq button i').forEach(i => i.classList.remove('rotate-180'));
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+      }
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderClubs();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
